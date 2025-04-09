@@ -67,13 +67,15 @@ public class Main {
             spaces.add(new ArrayList<>());
             for (int j = 0; j < BOARD_LIMIT; j++) {
                 var positionConfig = positions.get("%s,%s".formatted(i, j));
+                if (positionConfig == null) {
+                    positionConfig = "0,false";
+                }
                 var expected = Integer.parseInt(positionConfig.split(",")[0]);
                 var fixed = Boolean.parseBoolean(positionConfig.split(",")[1]);
                 var currentSpace = new Space(expected, fixed);
                 spaces.get(i).add(currentSpace);
             }
         }
-
         board = new Board(spaces);
         System.out.println("O jogo está pronto para começar");
     }
